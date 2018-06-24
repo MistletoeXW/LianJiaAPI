@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://api.mzz.pub:3306/city_lianjia_data?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: miaoxiaojie
+
+  thymeleaf:
+      cache: true
+  devtools:
+    restart:
+      enabled: true  #热部署生效
+      additional-paths: src/main/java #设置热部署重启目录
+  jpa:
+    show-sql: true
+mybatis:
+  mapper-locations: classpath:mapping/*.xml
+  type-aliases-package: com.carsystem.entity
+server:
+  port: 8081
