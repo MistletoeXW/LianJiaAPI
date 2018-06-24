@@ -1,4 +1,4 @@
-package com.carsystem.model;
+package com.lianjia.tool;
 
 /**
  * 后端返回标准格式

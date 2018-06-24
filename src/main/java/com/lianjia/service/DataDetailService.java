@@ -1,4 +1,4 @@
 package com.lianjia.service;
 
-public class DataDetailMapper {
+public class DataDetailService {
 }
