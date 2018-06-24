@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lianjia.dao.DataDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.lianjia.model.entity.DataDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="deleted_at" property="deletedAt" jdbcType="TIMESTAMP" />
+    <result column="page_id" property="pageId" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="sec_area" property="secArea" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="community_name" property="communityName" jdbcType="VARCHAR" />
+    <result column="house_type" property="houseType" jdbcType="VARCHAR" />
+    <result column="square" property="square" jdbcType="DOUBLE" />
+    <result column="toward" property="toward" jdbcType="VARCHAR" />
+    <result column="decoration" property="decoration" jdbcType="VARCHAR" />
+    <result column="lift" property="lift" jdbcType="VARCHAR" />
+    <result column="flood" property="flood" jdbcType="VARCHAR" />
+    <result column="total_price" property="totalPrice" jdbcType="INTEGER" />
+    <result column="unit_price" property="unitPrice" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="star" property="star" jdbcType="INTEGER" />
+    <result column="visit" property="visit" jdbcType="INTEGER" />
+    <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="building_type" property="buildingType" jdbcType="VARCHAR" />
+    <result column="ownership" property="ownership" jdbcType="VARCHAR" />
+    <result column="down_payment_budget" property="downPaymentBudget" jdbcType="VARCHAR" />
+    <result column="house_use" property="houseUse" jdbcType="VARCHAR" />
+    <result column="completion_date" property="completionDate" jdbcType="DATE" />
+    <result column="floor" property="floor" jdbcType="VARCHAR" />
+    <result column="visit7" property="visit7" jdbcType="INTEGER" />
+    <result column="visit30" property="visit30" jdbcType="INTEGER" />
+    <result column="carousel_images" property="carouselImages" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, created_at, updated_at, deleted_at, page_id, city, area, sec_area, title, community_name, 
+    house_type, square, toward, decoration, lift, flood, total_price, unit_price, image, 
+    star, visit, publish_time, building_type, ownership, down_payment_budget, house_use, 
+    completion_date, floor, visit7, visit30, carousel_images
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.lianjia.model.entity.DataDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from data_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from data_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from data_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.lianjia.model.entity.DataDetailExample" >
+    delete from data_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.lianjia.model.entity.DataDetail" >
+    insert into data_detail (id, created_at, updated_at, 
+      deleted_at, page_id, city, 
+      area, sec_area, title, 
+      community_name, house_type, square, 
+      toward, decoration, lift, 
+      flood, total_price, unit_price, 
+      image, star, visit, 
+      publish_time, building_type, ownership, 
+      down_payment_budget, house_use, completion_date, 
+      floor, visit7, visit30, 
+      carousel_images)
+    values (#{id,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{deletedAt,jdbcType=TIMESTAMP}, #{pageId,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{secArea,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{communityName,jdbcType=VARCHAR}, #{houseType,jdbcType=VARCHAR}, #{square,jdbcType=DOUBLE}, 
+      #{toward,jdbcType=VARCHAR}, #{decoration,jdbcType=VARCHAR}, #{lift,jdbcType=VARCHAR}, 
+      #{flood,jdbcType=VARCHAR}, #{totalPrice,jdbcType=INTEGER}, #{unitPrice,jdbcType=INTEGER}, 
+      #{image,jdbcType=VARCHAR}, #{star,jdbcType=INTEGER}, #{visit,jdbcType=INTEGER}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{buildingType,jdbcType=VARCHAR}, #{ownership,jdbcType=VARCHAR}, 
+      #{downPaymentBudget,jdbcType=VARCHAR}, #{houseUse,jdbcType=VARCHAR}, #{completionDate,jdbcType=DATE}, 
+      #{floor,jdbcType=VARCHAR}, #{visit7,jdbcType=INTEGER}, #{visit30,jdbcType=INTEGER}, 
+      #{carouselImages,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.lianjia.model.entity.DataDetail" >
+    insert into data_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createdAt != null" >
+        created_at,
+      </if>
+      <if test="updatedAt != null" >
+        updated_at,
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at,
+      </if>
+      <if test="pageId != null" >
+        page_id,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="secArea != null" >
+        sec_area,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="communityName != null" >
+        community_name,
+      </if>
+      <if test="houseType != null" >
+        house_type,
+      </if>
+      <if test="square != null" >
+        square,
+      </if>
+      <if test="toward != null" >
+        toward,
+      </if>
+      <if test="decoration != null" >
+        decoration,
+      </if>
+      <if test="lift != null" >
+        lift,
+      </if>
+      <if test="flood != null" >
+        flood,
+      </if>
+      <if test="totalPrice != null" >
+        total_price,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="star != null" >
+        star,
+      </if>
+      <if test="visit != null" >
+        visit,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="buildingType != null" >
+        building_type,
+      </if>
+      <if test="ownership != null" >
+        ownership,
+      </if>
+      <if test="downPaymentBudget != null" >
+        down_payment_budget,
+      </if>
+      <if test="houseUse != null" >
+        house_use,
+      </if>
+      <if test="completionDate != null" >
+        completion_date,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="visit7 != null" >
+        visit7,
+      </if>
+      <if test="visit30 != null" >
+        visit30,
+      </if>
+      <if test="carouselImages != null" >
+        carousel_images,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageId != null" >
+        #{pageId,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="secArea != null" >
+        #{secArea,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="communityName != null" >
+        #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="square != null" >
+        #{square,jdbcType=DOUBLE},
+      </if>
+      <if test="toward != null" >
+        #{toward,jdbcType=VARCHAR},
+      </if>
+      <if test="decoration != null" >
+        #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="lift != null" >
+        #{lift,jdbcType=VARCHAR},
+      </if>
+      <if test="flood != null" >
+        #{flood,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        #{star,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buildingType != null" >
+        #{buildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownership != null" >
+        #{ownership,jdbcType=VARCHAR},
+      </if>
+      <if test="downPaymentBudget != null" >
+        #{downPaymentBudget,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUse != null" >
+        #{houseUse,jdbcType=VARCHAR},
+      </if>
+      <if test="completionDate != null" >
+        #{completionDate,jdbcType=DATE},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="visit7 != null" >
+        #{visit7,jdbcType=INTEGER},
+      </if>
+      <if test="visit30 != null" >
+        #{visit30,jdbcType=INTEGER},
+      </if>
+      <if test="carouselImages != null" >
+        #{carouselImages,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.lianjia.model.entity.DataDetailExample" resultType="java.lang.Integer" >
+    select count(*) from data_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update data_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null" >
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null" >
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deletedAt != null" >
+        deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pageId != null" >
+        page_id = #{record.pageId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null" >
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.area != null" >
+        area = #{record.area,jdbcType=VARCHAR},
+      </if>
+      <if test="record.secArea != null" >
+        sec_area = #{record.secArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.communityName != null" >
+        community_name = #{record.communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseType != null" >
+        house_type = #{record.houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.square != null" >
+        square = #{record.square,jdbcType=DOUBLE},
+      </if>
+      <if test="record.toward != null" >
+        toward = #{record.toward,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decoration != null" >
+        decoration = #{record.decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lift != null" >
+        lift = #{record.lift,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flood != null" >
+        flood = #{record.flood,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalPrice != null" >
+        total_price = #{record.totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.unitPrice != null" >
+        unit_price = #{record.unitPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.star != null" >
+        star = #{record.star,jdbcType=INTEGER},
+      </if>
+      <if test="record.visit != null" >
+        visit = #{record.visit,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishTime != null" >
+        publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buildingType != null" >
+        building_type = #{record.buildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ownership != null" >
+        ownership = #{record.ownership,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downPaymentBudget != null" >
+        down_payment_budget = #{record.downPaymentBudget,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseUse != null" >
+        house_use = #{record.houseUse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.completionDate != null" >
+        completion_date = #{record.completionDate,jdbcType=DATE},
+      </if>
+      <if test="record.floor != null" >
+        floor = #{record.floor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.visit7 != null" >
+        visit7 = #{record.visit7,jdbcType=INTEGER},
+      </if>
+      <if test="record.visit30 != null" >
+        visit30 = #{record.visit30,jdbcType=INTEGER},
+      </if>
+      <if test="record.carouselImages != null" >
+        carousel_images = #{record.carouselImages,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update data_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{record.deletedAt,jdbcType=TIMESTAMP},
+      page_id = #{record.pageId,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      area = #{record.area,jdbcType=VARCHAR},
+      sec_area = #{record.secArea,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      community_name = #{record.communityName,jdbcType=VARCHAR},
+      house_type = #{record.houseType,jdbcType=VARCHAR},
+      square = #{record.square,jdbcType=DOUBLE},
+      toward = #{record.toward,jdbcType=VARCHAR},
+      decoration = #{record.decoration,jdbcType=VARCHAR},
+      lift = #{record.lift,jdbcType=VARCHAR},
+      flood = #{record.flood,jdbcType=VARCHAR},
+      total_price = #{record.totalPrice,jdbcType=INTEGER},
+      unit_price = #{record.unitPrice,jdbcType=INTEGER},
+      image = #{record.image,jdbcType=VARCHAR},
+      star = #{record.star,jdbcType=INTEGER},
+      visit = #{record.visit,jdbcType=INTEGER},
+      publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      building_type = #{record.buildingType,jdbcType=VARCHAR},
+      ownership = #{record.ownership,jdbcType=VARCHAR},
+      down_payment_budget = #{record.downPaymentBudget,jdbcType=VARCHAR},
+      house_use = #{record.houseUse,jdbcType=VARCHAR},
+      completion_date = #{record.completionDate,jdbcType=DATE},
+      floor = #{record.floor,jdbcType=VARCHAR},
+      visit7 = #{record.visit7,jdbcType=INTEGER},
+      visit30 = #{record.visit30,jdbcType=INTEGER},
+      carousel_images = #{record.carouselImages,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lianjia.model.entity.DataDetail" >
+    update data_detail
+    <set >
+      <if test="createdAt != null" >
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null" >
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deletedAt != null" >
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pageId != null" >
+        page_id = #{pageId,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="secArea != null" >
+        sec_area = #{secArea,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="communityName != null" >
+        community_name = #{communityName,jdbcType=VARCHAR},
+      </if>
+      <if test="houseType != null" >
+        house_type = #{houseType,jdbcType=VARCHAR},
+      </if>
+      <if test="square != null" >
+        square = #{square,jdbcType=DOUBLE},
+      </if>
+      <if test="toward != null" >
+        toward = #{toward,jdbcType=VARCHAR},
+      </if>
+      <if test="decoration != null" >
+        decoration = #{decoration,jdbcType=VARCHAR},
+      </if>
+      <if test="lift != null" >
+        lift = #{lift,jdbcType=VARCHAR},
+      </if>
+      <if test="flood != null" >
+        flood = #{flood,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPrice != null" >
+        total_price = #{totalPrice,jdbcType=INTEGER},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="star != null" >
+        star = #{star,jdbcType=INTEGER},
+      </if>
+      <if test="visit != null" >
+        visit = #{visit,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buildingType != null" >
+        building_type = #{buildingType,jdbcType=VARCHAR},
+      </if>
+      <if test="ownership != null" >
+        ownership = #{ownership,jdbcType=VARCHAR},
+      </if>
+      <if test="downPaymentBudget != null" >
+        down_payment_budget = #{downPaymentBudget,jdbcType=VARCHAR},
+      </if>
+      <if test="houseUse != null" >
+        house_use = #{houseUse,jdbcType=VARCHAR},
+      </if>
+      <if test="completionDate != null" >
+        completion_date = #{completionDate,jdbcType=DATE},
+      </if>
+      <if test="floor != null" >
+        floor = #{floor,jdbcType=VARCHAR},
+      </if>
+      <if test="visit7 != null" >
+        visit7 = #{visit7,jdbcType=INTEGER},
+      </if>
+      <if test="visit30 != null" >
+        visit30 = #{visit30,jdbcType=INTEGER},
+      </if>
+      <if test="carouselImages != null" >
+        carousel_images = #{carouselImages,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.lianjia.model.entity.DataDetail" >
+    update data_detail
+    set created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      page_id = #{pageId,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      sec_area = #{secArea,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      community_name = #{communityName,jdbcType=VARCHAR},
+      house_type = #{houseType,jdbcType=VARCHAR},
+      square = #{square,jdbcType=DOUBLE},
+      toward = #{toward,jdbcType=VARCHAR},
+      decoration = #{decoration,jdbcType=VARCHAR},
+      lift = #{lift,jdbcType=VARCHAR},
+      flood = #{flood,jdbcType=VARCHAR},
+      total_price = #{totalPrice,jdbcType=INTEGER},
+      unit_price = #{unitPrice,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      star = #{star,jdbcType=INTEGER},
+      visit = #{visit,jdbcType=INTEGER},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      building_type = #{buildingType,jdbcType=VARCHAR},
+      ownership = #{ownership,jdbcType=VARCHAR},
+      down_payment_budget = #{downPaymentBudget,jdbcType=VARCHAR},
+      house_use = #{houseUse,jdbcType=VARCHAR},
+      completion_date = #{completionDate,jdbcType=DATE},
+      floor = #{floor,jdbcType=VARCHAR},
+      visit7 = #{visit7,jdbcType=INTEGER},
+      visit30 = #{visit30,jdbcType=INTEGER},
+      carousel_images = #{carouselImages,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
