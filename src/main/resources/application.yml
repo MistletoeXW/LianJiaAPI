@@ -15,6 +15,6 @@ spring:
     show-sql: true
 mybatis:
   mapper-locations: classpath:mapping/*.xml
-  type-aliases-package: com.carsystem.entity
+  type-aliases-package: com.lianjia.model.entity
 server:
   port: 8081
